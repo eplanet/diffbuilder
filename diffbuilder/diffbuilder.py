@@ -1,5 +1,4 @@
-import os, shutil
-import hashlib
+import os, hashlib
 
 
 class DiffBuilder :
@@ -43,7 +42,7 @@ class DiffBuilder :
                         curOutFile = os.path.join(curOutDir, p)
                         if not os.path.exists(curOutDir):
                             os.makedirs(curOutDir)
-                        shutil.copyfile(curCmpFile, curOutFile)
+                        os.link(curCmpFile, curOutFile)
 
     def recursiveRightCompare(self, iCurrentPath):
         curRefDir = os.path.join(self.ref, iCurrentPath)
@@ -60,4 +59,4 @@ class DiffBuilder :
                     curOutFile = os.path.join(curOutDir, p)
                     if not os.path.exists(curOutDir):
                         os.mkdir(curOutDir)
-                    shutil.copyfile(curCmpFile, curOutFile)
+                    os.link(curCmpFile, curOutFile)
